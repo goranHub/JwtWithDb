@@ -1,7 +1,6 @@
 package com.example.data.Implementation;
 
 
-
 import com.example.data.RoleDataAccessService;
 import com.example.data.UserDataAccessService;
 import com.example.model.Role;
@@ -27,10 +26,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserDetailsManagerImpl userDetailsManager;
     @Autowired
-    User user;
+    private User user;
     @Autowired
-    Role role;
-
+    private Role role;
 
 
     @Override
@@ -41,30 +39,33 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 
         if (user.getFname().equals(username)) {
-            if(username.equals("admin")){
+
+            if (userDetailsManager.userExists(username)) {
+                return userDetailsManager.loadUserByUsername(username);
+            } else if (username.equals("admin")) {
                 user.setRole("ADMIN");
                 userDetailsManager.createUser(user);
-                roleDataAccessService.setRoleAdmin(role,user);
-                return user;
-            }
-
-
-            if(username.equals("develop")){
-                user.setRole("DEVELOPER");
-                userDetailsManager.createUser(user);
-                roleDataAccessService.setRoleDeveloper(role, user);
-
+                roleDataAccessService.setRoleAdmin(role, user);
                 return user;
             }
 
         }
 
 
+        if (userDetailsManager.userExists(username)) {
+            return userDetailsManager.loadUserByUsername(username);
+        } else if (username.equals("develop")) {
+            user.setRole("DEVELOPER");
+            userDetailsManager.createUser(user);
+            roleDataAccessService.setRoleDeveloper(role, user);
+
+            return user;
+        }
         return null;
     }
 
-
 }
+
 
 
 
