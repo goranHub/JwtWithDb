@@ -1,6 +1,10 @@
 package com.example.model;
 
 
+import lombok.Getter;
+
+import lombok.Setter;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,13 +15,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+@Getter
+@Setter
 @Component
+
 public class User implements UserDetails, Serializable {
 
 
 
-
     private int id;
+  //  @Column("login")
     private String login;
     private String password;
     private String fname;
@@ -28,11 +35,12 @@ public class User implements UserDetails, Serializable {
     private int active;
     String ROLE_PREFIX = "ROLE_";
 
-    public User() {
-        super();
-    }
+
     public User(String subject, String password, Collection<? extends GrantedAuthority> authorities) {
         super();
+    }
+
+    public User() {
     }
 
     public User(int id, String login, String password, String fname, String lname, String email) {
@@ -44,35 +52,23 @@ public class User implements UserDetails, Serializable {
         this.email = email;
     }
 
-    public User(String username, String password, String role){
+    public User(String username, String password, String role) {
         this.fname = username;
         this.password = password;
         this.role = role;
     }
 
-    public User(String username, String password){
+    public User(String username, String password) {
         this.fname = username;
         this.password = password;
     }
 
-/*
-    public User(UserDetails usserdetails) {
-        this.usserdetails = usserdetails;
-    }
-*/
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public User(int id, String fname, String lname) {
         this.id = id;
+        this.fname = fname;
+        this.lname = lname;
     }
-
-    public String getLogin() {
-        return login;
-    }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -81,9 +77,6 @@ public class User implements UserDetails, Serializable {
         return list;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
     @Override
     public String getUsername() {
@@ -110,33 +103,19 @@ public class User implements UserDetails, Serializable {
         return true;
     }
 
-
-    public String getFname() {
-        return fname;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", fname='" + fname + '\'' +
+                ", lname='" + lname + '\'' +
+                ", email='" + email + '\'' +
+                ", usserdetails=" + usserdetails +
+                ", role='" + role + '\'' +
+                ", active=" + active +
+                ", ROLE_PREFIX='" + ROLE_PREFIX + '\'' +
+                '}';
     }
-
-
-    public String getLname() {
-        return lname;
-    }
-
-
-    public String getEmail() {
-        return email;
-    }
-
-
-    public int getActive() {
-        return 1;
-    }
-
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getRole(){
-        return this.role;
-    }
-
 }

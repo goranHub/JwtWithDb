@@ -1,13 +1,11 @@
 package com.example.data.Implementation;
 
-
 import com.example.model.User;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,6 +58,10 @@ public class UserDetailsManagerImpl implements UserDetailsManager {
                 .findFirst()
                 .orElseThrow(() -> new UsernameNotFoundException("not find"));
 
+    }
+
+    public int getCountOfCreatedUsers(){
+       return usersAusUSer.size();
     }
 
 }

@@ -32,7 +32,6 @@ public class DatabaseConfiguration {
     }
 
 
-
     @Bean
     public JdbcTemplate getJdbcTemplate() {
         return new JdbcTemplate(customDataSource());

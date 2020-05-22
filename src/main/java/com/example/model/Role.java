@@ -1,8 +1,13 @@
 package com.example.model;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 import java.io.Serializable;
-
+@Getter
+@Setter
+@RequiredArgsConstructor
 @Component
 public class Role implements Serializable {
     private int id;
@@ -31,79 +36,6 @@ public class Role implements Serializable {
         this.role_purchase_write = role_purchase_write;
         this.role_sale_write = role_sale_write;
         this.role_sql = role_sql;
-    }
-
-    public Role() {
-    }
-
-  /*  public void setId(int id) {
-        this.id = id;
-    }*/
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-
-    public int getRole_admin() {
-        return role_admin;
-    }
-
-
-    public int getRole_develop() {
-        return role_develop;
-    }
-
-
-    public int getRole_cctld() {
-        return role_cctld;
-    }
-
-
-    public int getRole_gtld() {
-        return role_gtld;
-    }
-
-
-    public int getRole_billing() {
-        return role_billing;
-    }
-
-
-    public int getRole_registry() {
-        return role_registry;
-    }
-
-
-    public int getRole_purchase_read() {
-        return role_purchase_read;
-    }
-
-
-    public int getRole_purchase_write() {
-        return role_purchase_write;
-    }
-
-
-    public int getRole_sale_write() {
-        return role_sale_write;
-    }
-
-
-    public int getRole_sql() {
-        return role_sql;
     }
 
 
