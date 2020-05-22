@@ -48,7 +48,7 @@ public class UserDBTest {
 
 
     @Test
-    public void givenLargeIdList_whenGetEmployeesFromIdList_thenReturnCorrectEmployees() {
+    public void proveIds() {
 
         UserDataAccessService userDataAccessService = new UserDataAccessService();
         DatabaseConfiguration databaseConfiguration = new DatabaseConfiguration();
@@ -62,5 +62,23 @@ public class UserDBTest {
 
         assertEquals(1, users.get(0).getId());
         assertEquals(4, users.get(1).getId());
+    }
+
+
+    @Test
+    public void proveFname(){
+        UserDataAccessService userDataAccessService = new UserDataAccessService();
+        DatabaseConfiguration databaseConfiguration = new DatabaseConfiguration();
+        userDataAccessService.setDataSource(databaseConfiguration.customDataSource());
+
+        List<String> fnames = new ArrayList<>();
+
+        fnames.add(0,"neue");
+
+        List<User> users = userDataAccessService.getUserFrombyFname(fnames);
+
+        assertEquals(3, users.get(0).getId());
+
+
     }
 }

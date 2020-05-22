@@ -42,6 +42,17 @@ public class UserDataAccessService {
         return users;
     }
 
+
+    public List<User> getUserFrombyFname(List<String> fnames) {
+        SqlParameterSource parameters = new MapSqlParameterSource("fnames", fnames);
+        List<User> users = namedJdbcTemplate.query(
+                "SELECT * FROM user WHERE fname IN (:fnames)",
+                parameters,
+                (rs, rowNum) -> new User(rs.getInt("id"), rs.getString("fname"), rs.getString("lname")));
+
+        return users;
+    }
+
 //for test
     public void setDataSource(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
@@ -107,5 +118,6 @@ public class UserDataAccessService {
     public int getCountOfUsers() {
         return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM user", Integer.class);
     }
+
 
 }
