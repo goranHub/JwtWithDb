@@ -17,9 +17,9 @@ import java.util.List;
 public class UserController {
 
 
-    private final UserService userService;
+    private  UserService userService;
 
-    @Autowired
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -35,9 +35,9 @@ public class UserController {
     }
 
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_DEVELOPER')")
+    //@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_DEVELOPER')")
     @GetMapping(path = "{id}")
-    public User getUser(@PathVariable("id") int userId) {
+    public User getUserById(@PathVariable("id") int userId) {
         return userService.getUserbyID(userId);
     }
 

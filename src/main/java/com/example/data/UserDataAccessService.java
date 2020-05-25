@@ -19,13 +19,9 @@ import java.util.List;
 @Repository
 public class UserDataAccessService {
 
-
-    private  JdbcTemplate jdbcTemplate;
-
     @Autowired
-    public UserDataAccessService(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    JdbcTemplate jdbcTemplate;
+
 
     public UserDataAccessService() {
     }
@@ -60,7 +56,7 @@ public class UserDataAccessService {
     }
 
 
-    public List<User> selectAllUsers() {
+    public List<User> findAll() {
         String sql = "SELECT * FROM user";
         return jdbcTemplate.query(sql, mapUserFomDb());
     }
@@ -118,6 +114,7 @@ public class UserDataAccessService {
     public int getCountOfUsers() {
         return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM user", Integer.class);
     }
+
 
 
 }

@@ -24,6 +24,7 @@ public class LoginController {
         this.tokenProvider = tokenProvider;
         this.authenticationManager = authenticationManager;
     }
+
     @PostMapping
     public ResponseEntity login (Authentication authentication, HttpServletResponse response) {
         String jwt = tokenProvider.createToken(authentication);

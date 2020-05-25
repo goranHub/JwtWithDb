@@ -3,8 +3,10 @@ package com.example.config;
 
 import com.example.data.Implementation.UserDetailsServiceImpl;
 import com.example.data.RoleDataAccessService;
+import com.example.data.UserDataAccessService;
 import com.example.model.Role;
 import com.example.model.User;
+import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -44,10 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     Role role;
 
     @Autowired
-    DatabaseConfiguration databaseConfiguration;
-
-
-
+    UserService userService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -72,6 +71,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
+    @Bean
+    UserService userService(){
+        return new UserService();
+    }
+
+
+
 
     @Bean
     User user (){
@@ -88,5 +94,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public static PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
+
+
+
 
 }

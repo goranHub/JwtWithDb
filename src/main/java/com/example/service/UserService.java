@@ -5,6 +5,7 @@ import com.example.controller.LoginController;
 import com.example.data.UserDataAccessService;
 import com.example.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,18 +14,17 @@ import java.util.List;
 @Service
 public class UserService {
 
-    private final UserDataAccessService userDataAccessService;
     @Autowired
-    private LoginController loginController;
+    UserDataAccessService userDataAccessService;
 
-    @Autowired
-    public UserService(UserDataAccessService userDataAccessService) {
-        this.userDataAccessService = userDataAccessService;
-    }
+   /* @Autowired
+    private LoginController loginController;*/
+
+
 
     public List<User> getAllUsers() {
-
-        return userDataAccessService.selectAllUsers();
+        System.out.println("test  " +userDataAccessService.findAll());
+        return userDataAccessService.findAll();
     }
 
 

@@ -13,8 +13,8 @@ import javax.sql.DataSource;
 @Configuration()
 public class DatabaseConfiguration {
 
-    @Autowired
-    RoleDataAccessService roleDataAccessService;
+   /* @Autowired
+    RoleDataAccessService roleDataAccessService;*/
 
 
     @Primary
